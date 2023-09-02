@@ -22,10 +22,13 @@ const shoppingListEl = document.getElementById("shopping-list");
 
 addButtonEl.addEventListener("click", function () {
   let inputValue = inputFieldEl.value;
+  if (!inputValue) {
+    shoppingListEl.innerHTML = `<p style="color: red; margin: 0; font-weight: bold;">Per favore inserisci un prodotto!</p>`;
+  } else {
+    push(shoppingListInDB, inputValue);
 
-  push(shoppingListInDB, inputValue);
-
-  clearInputFieldEl();
+    clearInputFieldEl();
+  }
 });
 
 onValue(shoppingListInDB, function (snapshot) {
